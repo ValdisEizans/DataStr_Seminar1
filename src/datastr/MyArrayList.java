@@ -21,6 +21,26 @@ public class MyArrayList {
 	}
 	
 	//funkcijas
+	private boolean isEmpty() {
+		//1. garais pieraksts
+		/*if(howManyElements == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}*/
+		
+		//2. isais pieraksts
+		//return (howManyElements == 0 ? true : false);
+		
+		//3. ar atgriezto vertibu
+		return (howManyElements == 0); 
+	}
+	
+	private boolean isFull() {
+		return (howManyElements == size); 
+	}
+	
 	
 
 }
