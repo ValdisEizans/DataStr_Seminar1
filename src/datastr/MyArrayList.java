@@ -175,5 +175,12 @@ public class MyArrayList {
 		}
 		return nextElements;
 	}
+	
+	//veic elementu kartosanu
+	//TO DO iedod ievades parametru augosi/dilstosi
+	public void sort() {
+		
+	}
+	
 
 }
