@@ -178,9 +178,44 @@ public class MyArrayList {
 	
 	//veic elementu kartosanu
 	//TO DO iedod ievades parametru augosi/dilstosi
-	public void sort() {
+	public void sort() throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Nav iespejams sakartot sarakstu, jo saraksts tukss!");
+		}
+		//TO DO ja velas, parbauda vai tikai 1 elements
+		for (int i = 0; i < howManyElements; i++) {
+			for(int j = 0; j < howManyElements; j++) {
+				if(list[i] > list[j]) {
+					char temp = list[i];
+					list[i] = list[j];
+					list[j] = temp;
+					
+				}
+			}
+			
+		}
 		
 	}
 	
+	//veic saraksta izvadi
+	public void print() throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Nav iespejams izdrukat sarakstu, jo saraksts tukss!");
+		}
+		for (int i = 0; i < howManyElements; i++) {
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
 
+	}
+	
+	//veic saraksta iztuksosanu
+	public void makeEmpty(){
+		//TODO pieprasit pieprasijumu, vai tiesam velas dzest
+		list = null; //atkabina referenci no datiem
+		System.gc();
+		howManyElements = 0;
+		size = DEFAULT_SIZE;
+		list = new char[size];
+	}
 }
