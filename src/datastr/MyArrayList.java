@@ -55,6 +55,7 @@ public class MyArrayList {
 		System.gc();
 	}
 	
+	//pievienot elementu beigas
 	public void add(char element) {
 		if(isFull()) {
 			resize();
@@ -63,10 +64,33 @@ public class MyArrayList {
 		//list[howManyElements] = element;
 		//howManyElements++;
 		list[howManyElements++] = element;
-		
-		
 	}
-	
+
+	//pievienot elementu konkreta vieta
+	public void add(char element, int index) throws IllegalArgumentException{
+		if(index < 0) {
+			throw new IllegalArgumentException("Nav iespejams pievienot elementu, jo indekss negativs!");
+		}
+		if(index > howManyElements) {
+			throw new IllegalArgumentException("Nav iespejams pievienot elementu, jo indekss lielaks par atlauto!");
+		}
+		
+		if(index == howManyElements) {
+			add(element);
+			return; //apstadina funkcijas darbibu
+		}
+		//ja nelieto return, tad OBLIGATI else bloks
+		if(isFull()) {
+			resize();
+		}
+		
+		for(int i = howManyElements; i > index; i--) {
+			list[i] = list[i-1];
+		}
+		
+		list[index] = element;
+		howManyElements++;
+	}
 	
 	
 	
