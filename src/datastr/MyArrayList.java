@@ -92,8 +92,30 @@ public class MyArrayList {
 		howManyElements++;
 	}
 	
+	//atgriez cik elementi masiva
 	public int getHowManyElements(){
 		return howManyElements;
+	}
+	
+	//dzest elementu pec konkreta indeksa
+	public void remove(int index) throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Nav iespejams dzest elementu, jo saraksts tukss!");
+		}
+		if(index < 0) {
+			throw new IllegalArgumentException("Nav iespejams dzest elementu, jo indekss negativs!");
+		}
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException ("Nav iespejams dzest elementu, jo indekss lielaks vai vienads par elementu skaitu!");
+		}
+		
+		for(int i = index; i < howManyElements-1; i++) {
+			list[i] = list[i+1];
+		}
+		list[howManyElements-1] = ' '; //referencem lietot null
+		howManyElements--;
+		
+		//optimizacija => list[howManyElements--] = ' '; 
 	}
 	
 	
