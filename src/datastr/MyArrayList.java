@@ -153,6 +153,27 @@ public class MyArrayList {
 		return indexArayList;
 	}
 	
-	
+	//veic elementa meklesanu un atgriez blakuselementu
+	public char[] getNextElements(char element) throws Exception{
+		ArrayList<Integer> arrayListForIndexes = search(element);
+		
+		int howManyNextElements = arrayListForIndexes.size();
+		
+		//mekletais elements pedejais saraksta un pa  labi neka nav
+		if(arrayListForIndexes.get(arrayListForIndexes.size()-1) == howManyElements-1) {
+			howManyNextElements--;
+		}
+		
+		char[] nextElements = new char[howManyNextElements];
+		
+		int indexForNextElementArray = 0;
+		
+		for(int i = 0; i < howManyNextElements; i++) {
+			int nextElementIndex = arrayListForIndexes.get(i) + 1;
+			nextElements[indexForNextElementArray] = list[nextElementIndex];
+			indexForNextElementArray++;
+		}
+		return nextElements;
+	}
 
 }
