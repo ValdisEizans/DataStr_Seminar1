@@ -1,5 +1,7 @@
 package datastr;
 
+import java.util.ArrayList;
+
 public class MyArrayList {
 	
 	//mainigie
@@ -120,6 +122,9 @@ public class MyArrayList {
 
 	//atgriezt elementu pec konkreta indeksa
 	public char get(int index) throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Nav iespejams atrast elementu, jo saraksts tukss!");
+		}
 		if(index < 0) {
 			throw new IllegalArgumentException("Nav iespejams atrast elementu, jo indekss negativs!");
 		}
@@ -128,6 +133,26 @@ public class MyArrayList {
 		}
 		return list[index];
 	}
+	
+	//veic elementa meklesanu
+	public ArrayList<Integer> search(char element) throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Nav iespejams atrast elementu, jo saraksts tukss!");
+		}
+		ArrayList<Integer> indexArayList = new ArrayList<Integer>();
+		
+		for(int i = 0; i < howManyElements; i++) {
+			if(list[i] == element) {
+				indexArayList.add(i);
+			}
+			
+		}
+		if(indexArayList.isEmpty()) {
+			throw new Exception("Mekletais elements " + element + " neatrodas saraksta.");
+		}
+		return indexArayList;
+	}
+	
 	
 
 }
