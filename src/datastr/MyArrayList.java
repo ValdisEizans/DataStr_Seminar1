@@ -117,7 +117,17 @@ public class MyArrayList {
 		
 		//optimizacija => list[howManyElements--] = ' '; 
 	}
-	
+
+	//atgriezt elementu pec konkreta indeksa
+	public char get(int index) throws Exception{
+		if(index < 0) {
+			throw new IllegalArgumentException("Nav iespejams atrast elementu, jo indekss negativs!");
+		}
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException ("Nav iespejams atrast elementu, jo indekss lielaks vai vienads par elementu skaitu!");
+		}
+		return list[index];
+	}
 	
 
 }
