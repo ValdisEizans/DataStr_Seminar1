@@ -55,6 +55,18 @@ public class MyArrayList {
 		System.gc();
 	}
 	
+	public void add(char element) {
+		if(isFull()) {
+			resize();
+		}
+		
+		//list[howManyElements] = element;
+		//howManyElements++;
+		list[howManyElements++] = element;
+		
+		
+	}
+	
 	
 	
 	
