@@ -1,6 +1,6 @@
 package model;
 
-public class Student {
+public class Student implements Comparable<Student> {
 	//Mainigie
 		private long studId;
 		private String name;
@@ -77,6 +77,18 @@ public class Student {
 		public String toString() {
 			String result = studId + ": " + name + " " + surname + " (" + personCode + ")";
 			return result;
+		}
+		@Override
+		public int compareTo(Student student2) {
+			if(surname.charAt(0) > student2.surname.charAt(0)) {
+				return 1;
+			}
+			else if (surname.charAt(0) < student2.surname.charAt(0)) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
 		}
 		
 		//Parejas funkcijas
