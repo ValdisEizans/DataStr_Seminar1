@@ -2,40 +2,28 @@ package datastr;
 
 import java.util.ArrayList;
 
-public class MyArrayList {
+public class MyArrayList<Ttype> {//Pierakstam template datu tipu
 	
 	//mainigie
-	private char[] list;
+	private Ttype[] list;
 	private int howManyElements = 0;
 	private final int DEFAULT_SIZE = 8;
 	private int size = DEFAULT_SIZE;
 	
 	//konstruktori
 	public MyArrayList() {
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 	}
 	
 	public MyArrayList(int inputSize) {
 		if(inputSize > 0 && inputSize < 100000) {
 			size = inputSize;
 		}
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 	}
 	
 	//funkcijas
 	private boolean isEmpty() {
-		//1. garais pieraksts
-		/*if(howManyElements == 0) {
-			return true;
-		}
-		else {
-			return false;
-		}*/
-		
-		//2. isais pieraksts
-		//return (howManyElements == 0 ? true : false);
-		
-		//3. ar atgriezto vertibu
 		return (howManyElements == 0); 
 	}
 	
@@ -46,7 +34,7 @@ public class MyArrayList {
 	//resize
 	private void resize() {
 		int newSize = (howManyElements < 200) ? (size*2) : (int)(size*1.5);
-		char[] newList = new char[newSize]; 
+		Ttype[] newList = (Ttype[]) new Object[newSize]; 
 				
 		for(int i=0; i < howManyElements; i++) {
 			newList[i] = list[i];
@@ -58,7 +46,7 @@ public class MyArrayList {
 	}
 	
 	//pievienot elementu beigas
-	public void add(char element) {
+	public void add(Ttype element) {
 		if(isFull()) {
 			resize();
 		}
@@ -69,7 +57,7 @@ public class MyArrayList {
 	}
 
 	//pievienot elementu konkreta vieta
-	public void add(char element, int index) throws IllegalArgumentException{
+	public void add(Ttype element, int index) throws IllegalArgumentException{
 		if(index < 0) {
 			throw new IllegalArgumentException("Nav iespejams pievienot elementu, jo indekss negativs!");
 		}
@@ -114,14 +102,14 @@ public class MyArrayList {
 		for(int i = index; i < howManyElements-1; i++) {
 			list[i] = list[i+1];
 		}
-		list[howManyElements-1] = ' '; //referencem lietot null
+		list[howManyElements-1] = null; //referencem lietot null
 		howManyElements--;
 		
 		//optimizacija => list[howManyElements--] = ' '; 
 	}
 
 	//atgriezt elementu pec konkreta indeksa
-	public char get(int index) throws Exception{
+	public Ttype get(int index) throws Exception{
 		if(isEmpty()) {
 			throw new Exception("Nav iespejams atrast elementu, jo saraksts tukss!");
 		}
@@ -135,14 +123,14 @@ public class MyArrayList {
 	}
 	
 	//veic elementa meklesanu
-	public ArrayList<Integer> search(char element) throws Exception{
+	public ArrayList<Integer> search(Ttype element) throws Exception{
 		if(isEmpty()) {
 			throw new Exception("Nav iespejams atrast elementu, jo saraksts tukss!");
 		}
 		ArrayList<Integer> indexArayList = new ArrayList<Integer>();
 		
 		for(int i = 0; i < howManyElements; i++) {
-			if(list[i] == element) {
+			if(list[i].equals(element) ) {//referencu datu tipiem lietot equals
 				indexArayList.add(i);
 			}
 			
@@ -154,7 +142,7 @@ public class MyArrayList {
 	}
 	
 	//veic elementa meklesanu un atgriez blakuselementu
-	public char[] getNextElements(char element) throws Exception{
+	public Ttype[] getNextElements(Ttype element) throws Exception{
 		ArrayList<Integer> arrayListForIndexes = search(element);
 		
 		int howManyNextElements = arrayListForIndexes.size();
@@ -164,7 +152,7 @@ public class MyArrayList {
 			howManyNextElements--;
 		}
 		
-		char[] nextElements = new char[howManyNextElements];
+		Ttype[] nextElements = (Ttype[]) new Object[howManyNextElements];
 		
 		int indexForNextElementArray = 0;
 		
@@ -185,16 +173,13 @@ public class MyArrayList {
 		//TO DO ja velas, parbauda vai tikai 1 elements
 		for (int i = 0; i < howManyElements; i++) {
 			for(int j = 0; j < howManyElements; j++) {
-				if(list[i] > list[j]) {
-					char temp = list[i];
+				if( ((Comparable<Ttype>)list[i]).compareTo(list[j]) > 0) {
+					Ttype temp = list[i];
 					list[i] = list[j];
 					list[j] = temp;
-					
 				}
 			}
-			
 		}
-		
 	}
 	
 	//veic saraksta izvadi
@@ -216,6 +201,6 @@ public class MyArrayList {
 		System.gc();
 		howManyElements = 0;
 		size = DEFAULT_SIZE;
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 	}
 }
